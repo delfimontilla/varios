@@ -1,0 +1,10 @@
+#ifndef CARRERAS__H
+#define CARRERAS__H
+
+#define CODIGO_ELECTRONICA 1
+#define CODIGO_QUIMICA 2
+#define CODIGO_ALIMENTOS 3
+#define CODIGO_MECANICA 4
+#define CODIGO_INDUSTRIAL 5
+
+#endif
