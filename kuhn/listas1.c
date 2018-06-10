@@ -86,3 +86,65 @@ void impr_lista (T_NODO *L){
 
 	}
 }
+
+
+
+/************************7/6********/
+
+T_NODO * crear_ORD();
+void /*insertar ordenadamente*/ INS_ORD(T_NODO ** L, int val);
+
+int main(){
+	T_NODO * LIS = crear_ORD();
+	impr_lista(LIS);
+	return 0;
+}
+T_NODO * crear_ORD(){
+	T_NODO * L = NULL;
+	int CANT, v;
+	scanf("%d", &CANT);
+	while(CANT>0){
+		scanf("%d", &v);
+		INS_ORD(&L,v);
+		CANT--;
+	}
+	return L;
+}
+
+/**iterativo**/
+void INS_ORD(T_NODO ** L, int val){
+	
+	T_NODO * AUX=(*L), *AUX_2;
+	if(!AUX || AUX->val > val){
+		(*L) = (T_NODO *) malloc(sizeof(T_NODO));
+		(*L)->val = val;
+		(*L) = AUX;
+	}
+	else{
+		while(AUX->sig && AUX->sig->val <= val)
+			AUX = AUX->sig;
+		AUX_2 = AUX->sig;
+		AUX->sig = (T_NODO *) calloc(1, sizeof(T_NODO) );
+		AUX->sig->val = val;
+		AUX->sig->sig = AUX_2;
+	}
+}
+
+/**recursivo**por kuhn**/
+void INS_ORD_REC(T_NODO ** L, int valor){
+	
+	T_NODO * AUX;
+	if(!*L){
+		(*L) = (T_NODO *) malloc(sizeof(T_NODO));
+		(*L)->val=valor;
+		(*L)->sig=NULL;
+	}
+	else if{
+		AUX=(*L);
+		(*L) = (T_NODO *) malloc(sizeof(T_NODO));
+		(*L)->val = valor;
+		(*L)->sig = AUX;
+	}
+	else
+		INS_ORD_REC(&(*L)->, valor);
+}
